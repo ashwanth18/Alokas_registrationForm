@@ -181,8 +181,8 @@ useEffect(() => {
   <div className='grid grid-cols-1  md:grid-cols-3 md:justify-center items-center content-center'>
  {subjects.map((list,index) =>{
   return (
-    <div >
-    <motion.div className=' flex  mt-8 ' key={index} 
+    <div key={index} >
+    <motion.div className=' flex  mt-8 '  
     whileHover={{scale:1.3,originX:0,color:"yellow"}}
     transition={{type:"spring", stiffness:300}} > 
   <Box  >

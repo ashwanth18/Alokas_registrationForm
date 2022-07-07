@@ -6,11 +6,11 @@ import Header from '../components/Header'
 import { useRecoilState } from 'recoil';
 import { gradeAtom } from '../atoms/gradeAtom'
 import {motion} from "framer-motion"
-function page2_2() {
+function Page2_2() {
 
   const [grade , setGrade] = useRecoilState(gradeAtom);
 
-const handler = (e:any) => {
+const handler = (e) => {
 
 setGrade(e.target.value);
 // console.log("helloe",e.target.value)
@@ -62,4 +62,4 @@ exit={{y:"-100vh"}}
   )
 }
 
-export default page2_2
+export default Page2_2

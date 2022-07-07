@@ -5,7 +5,7 @@ import BackButton from '../components/BackButton'
 import Button from '../components/Button'
 import Header from '../components/Header'
 import {motion} from "framer-motion";
-function page1() {
+function Page1() {
   return (
     <div className='scrollbar'>
       <Header />
@@ -38,4 +38,4 @@ exit={{y:"-100vh"}}
   )
 }
 
-export default page1
+export default Page1

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { RecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { gradeAtom } from '../atoms/gradeAtom'
 import BackButton from '../components/BackButton'
 import Button from '../components/Button'
@@ -9,7 +9,8 @@ import Header from '../components/Header'
 import SubjectList from '../components/SubjectList'
 import {motion} from "framer-motion"
 
-function page3_3({}) {
+function Page3({}) {
+
   const subjects = [
     {
       id : 0,
@@ -18,12 +19,12 @@ function page3_3({}) {
     },
     {
        id : 1,
-      subj : "English",
+      subj : "English ",
       price : 60,
     },
     {
        id : 2,
-      subj : "Mathematic",
+      subj : "Mathematics",
       price : 60,
     },
     {
@@ -32,19 +33,14 @@ function page3_3({}) {
       price : 60,
     },
     {
-      id : 4,
-     subj : "Sejarah",
-     price : 60,
-   },
-   {
-    id : 5,
-   subj : "Geography",
-   price : 60,
- },
+       id : 4,
+      subj : "Tamil",
+      price : 60,
+    },
 
-  
 
   ];
+
 const [selectedGrade, setSelectedGrade] = useState([]);
 
 useEffect(() =>{
@@ -75,4 +71,4 @@ if(item){
   )
 }
 
-export default page3_3
+export default Page3

@@ -1,4 +1,3 @@
-import excuteQuery from '../../lib/db';
 export default async (req, res) => {
 
 const userData = req.body.userdata

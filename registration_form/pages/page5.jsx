@@ -19,7 +19,7 @@ import Header from '../components/Header';
 import {motion} from "framer-motion";
 import { Grade, Opacity } from '@mui/icons-material';
 import { gradeAtom } from '../atoms/gradeAtom';
-function page5() {
+function Page5() {
   const setGrade = useSetRecoilState(gradeAtom)
 const setTotalPrice = useSetRecoilState(subjectState)
 const setSubjectList = useSetRecoilState(subjectsAtom)
@@ -71,7 +71,7 @@ const { control,register, handleSubmit,reset, setValue, formState: {errors} } = 
 
 
 
-  const onSubmit = async(data:any) => { 
+  const onSubmit = async(data) => { 
     // console.log("check the data and its content",data)
   
   // console.log(userInfo)
@@ -320,4 +320,4 @@ type="submit" className={`${buttonOn ? "text-gray-400 border-gray-400 " : "borde
     )
 }
 
-export default page5
+export default Page5

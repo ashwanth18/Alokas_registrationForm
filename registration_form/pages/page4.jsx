@@ -15,7 +15,7 @@ import Header from '../components/Header';
 import { motion } from 'framer-motion';
 import { alpha, styled,createTheme,ThemeProvider } from '@mui/material/styles';
 import { Palette } from '@mui/icons-material';
-function page4() {
+function Page4() {
 const [userData, setUserData] = useRecoilState(userDataAtom);
 // const subjectList = useRecoilValue(subjectsAtom);
 // const subjectListsss = useRecoilValue(subjectState);
@@ -257,4 +257,4 @@ type="submit" className='border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex
     )
 }
 
-export default page4
+export default Page4

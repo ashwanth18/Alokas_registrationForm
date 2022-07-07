@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState, SetRecoilState } from 'recoil'
 import { gradeAtom } from '../atoms/gradeAtom'
 import BackButton from '../components/BackButton'
 import Button from '../components/Button'
@@ -9,7 +9,7 @@ import Header from '../components/Header'
 import SubjectList from '../components/SubjectList'
 import {motion} from "framer-motion"
 
-function page3({}) {
+function Page3_1({}) {
 
   const subjects = [
     {
@@ -37,7 +37,11 @@ function page3({}) {
       subj : "Tamil",
       price : 60,
     },
-
+    {
+       id : 5,
+      subj : "Sejarah",
+      price : 60,
+    },
 
   ];
 
@@ -71,4 +75,4 @@ if(item){
   )
 }
 
-export default page3
+export default Page3_1

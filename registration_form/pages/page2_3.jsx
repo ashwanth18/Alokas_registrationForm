@@ -6,11 +6,11 @@ import Header from '../components/Header'
 import { useRecoilState } from 'recoil';
 import { gradeAtom } from '../atoms/gradeAtom'
 import {motion} from "framer-motion"
-function page2_1() {
+function Page2_3() {
 
   const [grade , setGrade] = useRecoilState(gradeAtom);
 
-const handler = (e:any) => {
+const handler = (e) => {
 
 setGrade(e.target.value);
 // console.log("helloe",e.target.value)
@@ -21,40 +21,37 @@ useEffect(() => {
 },[grade]);
   return (
     <div className='scrollbar'>
-      <Header />
     <motion.div className='h-screen'
 initial={{y:"100vh"}}
 animate={{y:0}}
 exit={{y:"-100vh"}}
     transition={{ease:"easeInOut"}}
     >
-
+<Header />
 <BackButton />
 
-    <h1 className='items-center text-center mt-[10%] font-extrabold text-3xl'>Sekolah Jenis Tamil Kebangsaan</h1>
+    <h1 className='items-center text-center mt-[10%] font-extrabold text-3xl'>Sekolah Menengkah Kebangsaan</h1>
     <h1 className='items-center text-center font-extrabold text-3xl'> Select your year</h1>
 
     <div className='flex justify-center text-center items-center mt-[5%] '>
-    <Link href="/page3" passHref>
-  <a className='m-2 '><Button value = {"Year 1"} handler={handler} /></a>
+    <Link href="/page3_3" passHref>
+  <a className='m-2 '><Button value = {"Form 1"} handler={handler} /></a>
   </Link>
-  <Link href="/page3" passHref>
-  <a className='m-2'><Button value = {"Year 2"} handler={handler} /></a>
+  <Link href="/page3_3" passHref>
+  <a className='m-2'><Button value = {"Form 2"} handler={handler} /></a>
   </Link>
-  <Link href="/page3" passHref>
-  <a className='m-2'><Button value = {"Year 3"} handler={handler} /></a>
+  <Link href="/page3_3" passHref>
+  <a className='m-2'><Button value = {"Form 3"} handler={handler} /></a>
   </Link>
   </div>
   <div className='flex justify-center text-center items-center  '>
-    <Link href="/page3_1" passHref>
-  <a className='m-2'><Button value = {"Year 4"} handler={handler} /></a>
+    <Link href="/page3_4" passHref>
+  <a className='m-2'><Button value = {"Form 4"} handler={handler} /></a>
   </Link>
-  <Link href="/page3_1" passHref>
-  <a className='m-2'><Button value = {"Year 5"} handler={handler} /></a>
+  <Link href="/page3_4" passHref>
+  <a className='m-2'><Button value = {"Form 5"} handler={handler} /></a>
   </Link>
-  <Link href="/page3_1" passHref>
-  <a className='m-2'><Button value = {"Year 6"} handler={handler} /></a>
-  </Link>
+
   </div>
     <div className=' mt-[10%]'>
     
@@ -63,4 +60,4 @@ exit={{y:"-100vh"}}
   )
 }
 
-export default page2_1
+export default Page2_3

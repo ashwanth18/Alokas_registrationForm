@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+// import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import Button from '../components/Button'
 import Header from '../components/Header'
 import styles from '../styles/Home.module.css'
 import {motion,AnimatePresence} from "framer-motion";
-const Home: NextPage = () => {
+function Home(){
   return (
     <div className='h-screen scrollbar'
 

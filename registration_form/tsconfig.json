@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/form.jsx", "pages/api/databaseAPi.jsx", "pages/page5.jsx", "pages/page4.jsx", "pages/page3.jsx", "pages/page3_4.jsx", "pages/page3_3.jsx", "pages/page3_2.jsx", "pages/page3_1.jsx", "pages/page2.jsx", "pages/page2_3.jsx", "pages/page2_2.jsx", "pages/page2_1.jsx", "pages/page1.jsx", "pages/index.jsx", "components/TotalPrice.jsx", "components/SubjectList.jsx", "components/OrderSummary.jsx", "components/Header.jsx", "components/Button.jsx"],
   "exclude": ["node_modules"]
 }

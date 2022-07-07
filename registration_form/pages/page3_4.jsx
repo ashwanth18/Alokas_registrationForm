@@ -9,7 +9,7 @@ import Header from '../components/Header'
 import SubjectList from '../components/SubjectList'
 import {motion} from "framer-motion"
 
-function page3_4({}) {
+function Page3_4({}) {
   const subjects = [
     {
       id : 0,
@@ -90,4 +90,4 @@ if(item){
   )
 }
 
-export default page3_4
+export default Page3_4

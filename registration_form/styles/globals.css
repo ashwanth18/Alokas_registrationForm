@@ -21,7 +21,11 @@ body{
     background: radial-gradient(circle, rgba(133,0,255,1) 52%, rgba(84,9,121,1) 80%, rgba(19,0,36,1) 100%);
   }
   .headerLink{
-    @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[400] hover:text-[#b3b3b3];
+    @apply cursor-pointer text-sm font-light  transition duration-500 ;
+    color: #e5e5e5;
+  }
+  .headerLink :hover {
+    color : #b3b3b3
   }
 }
 
