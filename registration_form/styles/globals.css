@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* base html tag styling should be here  */
+@layer base{
+
+body{
+  
+  @apply  text-white overflow-x-hidden bg-cover ;
+  background: rgb(34,75,195);
+  background: linear-gradient(45deg, rgba(34,75,195,1) 21%, rgba(45,251,253,1) 100%);
+}
+}
+
+@layer components{
+  .buttonColor {
+    background : #034f84;
+  }
+  .bg_page4{
+    background: rgb(133,0,255);
+    background: radial-gradient(circle, rgba(133,0,255,1) 52%, rgba(84,9,121,1) 80%, rgba(19,0,36,1) 100%);
+  }
+  .headerLink{
+    @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[400] hover:text-[#b3b3b3];
+  }
+}
+
+@layer utilities {
+  /* .scrollbar::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+.scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+} */
+}
