@@ -1,6 +1,7 @@
 import React from 'react'
 import {motion,AnimatePresence, animate} from "framer-motion";
-function Button({value}) {
+
+function Button({value,handler}) {
 
   const pulseVarients = {
 initial : {
@@ -38,7 +39,7 @@ delay : 0.2,
         <AnimatePresence >
  <motion.button 
  variants={pulseVarients} whileHover="hover" exit={"exit"} initial={"initial"} animate={"animate"}
- className='rounded-full bg-blue-900 h-20 w-20 hover:shadow-md ' >
+ className='rounded-full bg-blue-900 h-20 w-20 hover:shadow-md ' value={value} onClick={handler}>
     {value} 
 </motion.button></AnimatePresence>
 

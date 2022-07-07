@@ -16,7 +16,8 @@
     "@mui/material": "^5.8.5",
     "@mui/styles": "^5.8.7",
     "@svgr/webpack": "^6.2.1",
-    "autoprefixer": "^9.8.8",
+    "autoprefixer": "^10.4.7",
+    "dns": "src/mock/dns",
     "dotenv": "^16.0.1",
     "emailjs": "^4.0.0",
     "framer-motion": "^6.3.16",
@@ -24,15 +25,14 @@
     "next": "12.1.6",
     "node-fetch": "^3.2.6",
     "nodemailer": "^6.7.7",
-    "postcss": "^7.0.39",
+    "postcss": "^8.4.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.33.0",
     "recoil": "^0.7.4",
     "serverless-mysql": "^1.5.4",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
-    "yup": "^0.32.11",
-    "dns": "src/mock/dns"
+    "tailwindcss": "^3.1.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "18.0.0",
