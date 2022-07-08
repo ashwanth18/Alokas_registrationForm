@@ -15,8 +15,8 @@ function SubjectList(prop) {
 const [totalPrice , setTotalPrice] = useRecoilState(subjectState);
 const [subjectsSelectedList, setSubjectsSelectedList] = useRecoilState(subjectsAtom);
 const subjects = prop.subjects
-console.log("what do i get here?",subjects)
-console.log("test", Array.isArray(subjects)) 
+// console.log("what do i get here?",subjects)
+// console.log("test", Array.isArray(subjects)) 
 
   // const subjects = [
   //   {
@@ -141,9 +141,9 @@ if(currVal) { return subjects[currIndex]; }
 
   },[]
   )
-  console.log(checked);
-  console.log(subjectsSelected);
-  console.log(filteredSubjects);
+  // console.log(checked);
+  // console.log(subjectsSelected);
+  // console.log(filteredSubjects);
   setSubjectsSelectedList(filteredSubjects);
 
 }
