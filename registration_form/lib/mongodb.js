@@ -45,10 +45,13 @@ async function dbConnect() {
 
 
 
-    await mongoose.connect(MONGODB_URI)
-
-  
-
+    await mongoose.connect(MONGODB_URIfunction ,(err) => {
+ 
+        if (err) throw err;
+      
+        console.log('Successfully connected');
+      
+     });
 }
 
 export default dbConnect
