@@ -69,24 +69,23 @@ if(item){
 }
 },[]);
   return (
-    <div className='scrollbar'>
-    <motion.div className='h-screen'
-    initial={{x:"100vw"}}
-    animate={{x:0}}
+    <motion.div className='h-auto min-h-screen  mb-20'
+    initial={{y:"100vh"}}
+    animate={{y:0}}
     exit={{x:"-100vw"}}
     transition={{ease:"easeInOut"}}
     >
 <Header />
 <BackButton />
 
-<h1 className='flex items-center justify-center mt-[5%] mb-[10%] font-extrabold text-3xl'>
+<h1 className='flex items-center justify-center mt-[5%] mb-[10%] font-extrabold text-sm  md:text-3xl'>
    {` ${selectedGrade} subjects: Select 1 or more subjects`}
 </h1>
 
 <SubjectList subjects = {subjects} />
   
 
-</motion.div></div>
+</motion.div>
   )
 }
 

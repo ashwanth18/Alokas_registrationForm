@@ -1,4 +1,5 @@
-
+import UserDataDB from "../../models/UserDataDB"
+import dbConnect from '../../lib/mongodb'
 
 
 export default async function handler(req, res) {
@@ -6,8 +7,8 @@ export default async function handler(req, res) {
   const body = req.body.subjects
   const userData = req.body.userData
   const userYear = req.body.year
-
-  const subjectList = body.map(obj => obj.subj )
+// console.log("where is the data?", req.body)
+  // const subjectList = body.map(obj => obj.subj )
   // console.log(userData)
   // console.log(body)
   // console.log(subjectList)
@@ -19,15 +20,15 @@ const transporter = nodemailer.createTransport({
     port: 465,
     host: "smtp.gmail.com",
     auth: {
-      user: "ashwanth18@gmail.com",
-      pass: "yohfwccnxgsomasd",
+      user: process.env.GOOGLE_APP_USER,
+      pass: process.env.GOOGLE_APP_PASS,
     },
     secure: true,
 });
 
 const mailData = {
-    from: 'ashwanth18@gmail.com',
-    to: `${userData.email}`,
+    from: 'alokaseducare@gmail.com',
+    to: `${userData.email}`, 
     subject: `Message From ALoKAS  `,
     text: `
     Dear ${userData.parentName},
@@ -35,8 +36,8 @@ const mailData = {
     Thank you for registering with ALoKAS, we will contact you soon.`,
    }
    const mailDataAdmin = {
-    from: 'ashwanth18@gmail.com',
-    to: `ashwanth18@gmail.com`,
+    from: 'alokaseducare@gmail.com',
+    to: `alokaseducare@gmail.com`,
     subject: `Message From ALoKAS: submission form  `,
     text: `
     student name : ${userData.studentName} , student year : ${userYear} , contact number : ${userData.contact}
@@ -46,13 +47,13 @@ const mailData = {
     if(err)
       console.log("what is this error",err)
     else
-      console.log("no error i guess",info)
+      console.log("no error while sending",info)
   })
   transporter.sendMail(mailDataAdmin, function (err, info) {
     if(err)
       console.log("what is this error",err)
     else
-      console.log("no error i guess",info)
+      console.log("no error while receiving",info)
   })
   // Optional logging to see the responses
   // in the command line where next.js app is running.
@@ -65,8 +66,23 @@ const mailData = {
   //   // Sends a HTTP bad request error code
   //   return res.status(400).json({ data: 'First or last name not found' })
   // }
+  await dbConnect()
+if(req.method == "POST"){
+  try {
+    const UserDataToDB = await UserDataDB.create({
+     "subjects": body ,
+     "userData" : userData,
+     "year" : userYear
+  }) /* create a new model in the database */
+    res.status(201).json({ success: true, data: UserDataToDB })
+  } catch (error) {
+    res.status(400).json({ success: false })
+    console.log("what is the errro",error)
+  }
+}
 
   // Found the name.
   // Sends a HTTP success code
-  res.status(200).json({ data: `${body.parentName} ${body}` })
+  res.status(200).json({ data: `checking ${userData.parentName} ${userData}` })
 }
+

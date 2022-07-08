@@ -20,8 +20,8 @@ useEffect(() => {
   localStorage.setItem("testGrade",JSON.stringify(grade))
 },[grade]);
   return (
-    <div className='scrollbar'>
-    <motion.div className='h-screen'
+
+    <motion.div className='h-auto min-h-screen'
 initial={{y:"100vh"}}
 animate={{y:0}}
 exit={{y:"-100vh"}}
@@ -30,10 +30,10 @@ exit={{y:"-100vh"}}
 <Header />
 <BackButton />
 
-    <h1 className='items-center text-center mt-[10%] font-extrabold text-3xl'>Sekolah Kebangsaan</h1>
-    <h1 className='items-center text-center font-extrabold text-3xl'> Select your year</h1>
+    <h1 className='items-center text-center mt-[10%] font-extrabold text-sm  md:text-3xl'>Sekolah Kebangsaan</h1>
+    <h1 className='items-center text-center font-extrabold text-sm  md:text-3xl'> Select your year</h1>
 
-    <div className='flex justify-center text-center items-center mt-[5%] '>
+    <div className='flex justify-center text-center items-center mt-[30%] lg:mt-[5%] '>
     <Link href="/page3_2" passHref>
   <a className='m-2 '><Button value = {"Year 1"} handler={handler} /></a>
   </Link>
@@ -58,7 +58,7 @@ exit={{y:"-100vh"}}
     <div className=' mt-[10%]'>
     
     </div>
-    </motion.div></div>
+    </motion.div>
   )
 }
 

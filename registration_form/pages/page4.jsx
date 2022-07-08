@@ -15,8 +15,10 @@ import Header from '../components/Header';
 import { motion } from 'framer-motion';
 import { alpha, styled,createTheme,ThemeProvider } from '@mui/material/styles';
 import { Palette } from '@mui/icons-material';
+import ReCAPTCHA from "react-google-recaptcha";
 function Page4() {
 const [userData, setUserData] = useRecoilState(userDataAtom);
+const recaptchaRef = React.createRef();
 // const subjectList = useRecoilValue(subjectsAtom);
 // const subjectListsss = useRecoilValue(subjectState);
 
@@ -37,7 +39,8 @@ email : yup.string().email().required("Email is a required field"),
   const { control, handleSubmit, formState: {errors} } = useForm({resolver: yupResolver(schema)});
 
   const onSubmit =  async(data) => {
-    
+    // Execute the reCAPTCHA when the form is submitted
+    recaptchaRef.current.execute();
     
     setUserData(data)
 
@@ -66,12 +69,45 @@ email : yup.string().email().required("Email is a required field"),
 //   const result = await response.json()
   // alert(`Is this your full name: ${result.data}`)
     // console.log(userData)
-    Router.push("/page5")
+    // awaitonReCAPTCHAChange();
+    
+    };
+
+    const onReCAPTCHAChange = async (captchaCode) => {
+      // If the reCAPTCHA code is null or undefined indicating that
+      // the reCAPTCHA was expired then return early
+      if (!captchaCode) {
+        return;
+      }
+      try {
+        const response = await fetch("/api/register", {
+          method: "POST",
+          body: JSON.stringify({ captcha: captchaCode }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          // If the response is ok than show the success alert
+        } else {
+          // Else throw an error with the message returned
+          // from the API
+          const error = await response.json();
+          throw new Error(error.message)
+        }
+      } catch (error) {
+        alert(error?.message || "Something went wrong");
+      } finally {
+        // Reset the reCAPTCHA when the request has failed or succeeeded
+        // so that it can be executed again if user submits another email.
+        recaptchaRef.current.reset();
+        Router.push("/page5")
+      }
     };
 
 
-console.log("checking if the user data has put put in the put", userData)
-console.log("testObject", Object.keys(userData))
+// console.log("checking if the user data has put put in the put", userData)
+// console.log("testObject", Object.keys(userData))
 useEffect(() => {
   localStorage.setItem("UserData",JSON.stringify(userData))
 },[userData]);
@@ -107,6 +143,7 @@ const theme = createTheme({
 // fucking did it !
 components : {
 MuiTextField : {
+  
  styleOverrides : {
   root : {'& label.Mui-focused': {
     color: 'white',
@@ -163,22 +200,31 @@ MuiTextField : {
 // });
 
   return (
-    <div className='h-[120vh] scrollbar'>
-    <motion.div className='h-screen'
-    initial={{x:"100vw"}}
-    animate={{x:0}}
-    exit={{x:"-100vw"}}
+
+    <motion.div className='h-auto min-h-screen  mb-14'
+    initial={{y:"120vh"}}
+    animate={{y:0}}
+    exit={{y:"-100vh"}}
     transition={{ease:"easeInOut"}}
     >
 <Header/>
 <BackButton />
 
-<h1 className='mt-[5%] justify-center items-center flex font-extrabold text-3xl'> Please fill in the fields below</h1>
+<h1 className='mt-[5%] justify-center items-center flex font-extrabold text-sm md:text-base lg:text-3xl'> Please fill in the fields below</h1>
 
 <motion.form className='mt-[5%] justify-center items-center flex flex-col  ' onSubmit={handleSubmit(onSubmit)}
 variants={formVarients}
 initial="hidden"
 animate="show">
+<div className='mt-14 mb-8'>
+<ReCAPTCHA
+	    ref={recaptchaRef}
+      badge="inline"
+	    size="invisible"
+	    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+      onChange={onReCAPTCHAChange}
+	  />
+    </div>
   <ThemeProvider theme={theme}>
 <Controller
 defaultValue={""}
@@ -186,7 +232,7 @@ name={"parentName"}
 control={control}
 render={({field }) =>
 <TextField component={motion.div} variants={textFieldVarients} color="primary" 
-  sx={{label : "white",  width:"30%",   margin:"5px" } } {...field} label="Parent Full Name" variant='outlined' error={!!errors.parentName} helperText={errors.parentName ? errors.parentName.message : ""}/>  
+  sx={{ width:{xs:"80%", md:"40%",lg:"30%"},   margin:"5px" } } {...field} label="Parent Full Name" variant='outlined' error={!!errors.parentName} helperText={errors.parentName ? errors.parentName.message : ""}/>  
 
 }
 />
@@ -195,7 +241,7 @@ defaultValue={""}
 name={"studentName"}
 control={control}
 render={({field }) =>
-<TextField component={motion.div} variants={textFieldVarients} sx={{ width:"30%",    margin:"5px" } }  {...field} label="Student Full Name" variant='outlined' error={!!errors.studentName} helperText={errors.studentName ? errors.studentName.message : ""}/>  
+<TextField component={motion.div} variants={textFieldVarients} sx={{ width:{xs:"80%", md:"40%",lg:"30%"},   margin:"5px" } }  {...field} label="Student Full Name" variant='outlined' error={!!errors.studentName} helperText={errors.studentName ? errors.studentName.message : ""}/>  
 
 }
 />
@@ -204,7 +250,7 @@ defaultValue={""}
 name={"studentIC"}
 control={control}
 render={({field }) =>
-<TextField component={motion.div} variants={textFieldVarients} sx={{ width:"30%",    margin:"5px" } }  {...field} label="Student IC Number" variant='outlined' error={!!errors.studentIC} helperText={errors.studentIC ? errors.studentIC.message : ""}/>  
+<TextField component={motion.div} variants={textFieldVarients} sx={{ width:{xs:"80%", md:"40%",lg:"30%"},   margin:"5px" } } {...field} label="Student IC Number" variant='outlined' error={!!errors.studentIC} helperText={errors.studentIC ? errors.studentIC.message : ""}/>  
 
 }
 />
@@ -213,7 +259,7 @@ defaultValue={""}
 name={"school"}
 control={control}
 render={({field }) =>
-<TextField component={motion.div} variants={textFieldVarients} sx={{  width:"30%", margin:"5px" } }  {...field} label="School Name" variant='outlined' error={!!errors.school} helperText={errors.school ? errors.school.message : ""}/>  
+<TextField component={motion.div} variants={textFieldVarients} sx={{ width:{xs:"80%", md:"40%",lg:"30%"},   margin:"5px" } }  {...field} label="School Name" variant='outlined' error={!!errors.school} helperText={errors.school ? errors.school.message : ""}/>  
 
 }
 />
@@ -222,7 +268,7 @@ defaultValue={""}
 name={"contact"}
 control={control}
 render={({field }) =>
-<TextField component={motion.div} variants={textFieldVarients} sx={{ width:"30%",    margin:"5px" } }  {...field} label="Contact Number" variant='outlined' error={!!errors.contact} helperText={errors.contact ? errors.contact.message : ""}/>  
+<TextField component={motion.div} variants={textFieldVarients} sx={{ width:{xs:"80%", md:"40%",lg:"30%"},   margin:"5px" } }  {...field} label="Contact Number" variant='outlined' error={!!errors.contact} helperText={errors.contact ? errors.contact.message : ""}/>  
 
 }
 />
@@ -231,10 +277,11 @@ defaultValue={""}
 name={"email"}
 control={control}
 render={({field }) =>
-<TextField className='text-white border-white '   component={motion.div} variants={textFieldVarients} sx={{ width:"30%",    margin:"5px" } }  {...field} label="Email" variant='outlined' error={!!errors.email} helperText={errors.email ? errors.email.message : ""}/>  
+<TextField className='text-white border-white '   component={motion.div} variants={textFieldVarients} sx={{ width:{xs:"80%", md:"40%",lg:"30%"},   margin:"5px" } }  {...field} label="Email" variant='outlined' error={!!errors.email} helperText={errors.email ? errors.email.message : ""}/>  
 
 }
 />
+
 </ThemeProvider>
 
 
@@ -253,7 +300,7 @@ type="submit" className='border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex
 {/* </Link> */} 
 </motion.form>
 
-</motion.div></div>
+</motion.div>
     )
 }
 

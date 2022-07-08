@@ -162,9 +162,10 @@ useEffect(() => {
   
 // },[]);
   return (
-    <motion.div className=' justify-center items-center content-center ml-[25%]' initial={{x:"100vw"}}
-    animate={{x:0}}
+    <motion.div className=' justify-center items-center content-center ml-[25%]' initial={{y:"100vh"}}
+    animate={{y:0}}
     transition={{type:"spring",stiffness:120,delay:0.5}}>
+
       <motion.div  whileHover={{scale:1.3,originX:0,color:"red"}}
     transition={{type:"spring", stiffness:300}}>
     <FormControlLabel
@@ -213,14 +214,20 @@ useEffect(() => {
 
 <Link href={"/page4"} passHref ><a>
   <motion.button
-initial={{x : "-100vw"}}
-  animate={{x : 0}}
+initial={{x : "-100vw",
+opacity: 0,
+  }}
+  animate={{x : 0,
+    opacity: 1,
+  }}
   whileHover={{
     scale: 1.1,
     textShadow: "0px 0px 8px rgb(255,255,255)",
     boxShadow: "0px 0px 8px rgb(255,255,255)"
   }}
-  exit={{ x:"100vw"}}
+  exit={{
+  opacity:0
+}}
   className='border p-4 rounded-full w-auto h-[40px] justify-center items-center flex ml-[30%] mt-8' onClick={submitHandler}> Confirm</motion.button>
   </a></Link>
 

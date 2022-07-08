@@ -16,7 +16,7 @@ import { subjectsAtom } from '../atoms/subjectsAtom';
 import OrderSummary from '../components/OrderSummary';
 import Coupon from '../components/Coupon';
 import Header from '../components/Header';
-import {motion} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import { Grade, Opacity } from '@mui/icons-material';
 import { gradeAtom } from '../atoms/gradeAtom';
 function Page5() {
@@ -28,6 +28,7 @@ const subjectList = useRecoilValue(subjectsAtom)
 const [userInfo , setUserInfo] = useState([])
 const [userYear , setUserYear] = useState([])
 const [buttonOn , setButtonOn] = useState([false])
+const [pageEnd , setPageEnd] = useState(true)
 // const [userSubject, setUserSubject] = useState([])
 // const [finalPrice , setFinalPrice] = useState([])
 useEffect(() =>{
@@ -108,8 +109,9 @@ const fullData = {
    // Get the response data from server as JSON.
    // If server returns the name submitted, that means the form works.
    const result = await response.json()
-   alert(`Is this your full name: ${result.data}`)
-  
+  //  alert(`The form has been successfully submitted, You will here from us shortly. Redirecting you to the main page`)
+   setPageEnd(false)
+  // Router.push("/")
   };
 
   const inputHandler = () => {
@@ -120,8 +122,16 @@ setButtonOn(!buttonOn)
     hidden: {opacity:0},
     show: { opacity:1,
     transition: {when: "beforeChildren", staggerChildren:0.1},},
-    
+    exit: {
+      x:"100vw"
+    },
     };
+    const endPageVarients = {
+      hidden: {opacity:0},
+      show: { opacity:1,
+      transition: {when: "beforeChildren", staggerChildren:0.4},},
+
+      };
     const inputVarients = {
       hidden: {x:"-100vw"},
       show: {opacity:1 ,x:0,
@@ -143,16 +153,18 @@ setButtonOn(!buttonOn)
       },
     };
   return (
-    <div className='scrollbar'>
-    <motion.div className='h-screen'
-    initial={{x:"100vw"}}
-    animate={{x:0}}
-    exit={{x:"-100vw"}}
+    
+    <motion.div className='h-auto min-h-screen  mb-20'
+    initial={{y:"100vh"}}
+    animate={{y:0}}
+    exit={{y:"-100vh"}}
     transition={{ease:"easeInOut"}}
-    >
-  <Header/>
-<motion.form className='w-full ' variants={formVarients} initial="hidden" animate="show" onSubmit={handleSubmit(onSubmit)}   >
-<div className='flex justify-center items-center flex-col md:flex-row  mt-12 '>
+    > 
+  <Header/>  <AnimatePresence >
+  { pageEnd ? 
+
+<motion.form className='w-auto ' variants={formVarients} initial="hidden" animate="show" exit={"exit"}  onSubmit={handleSubmit(onSubmit)}   >
+<div className='flex justify-center items-center flex-col lg:flex-row  mt-12 '>
   <div className='w-2/3'>
 <motion.div 
 variants={divVarients}
@@ -163,7 +175,7 @@ className="md:flex md:items-center mb-6">
       </motion.label>
     </div>
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={parentName} disabled {...register("ParentName")}/>
     </div>
   </motion.div >
@@ -176,7 +188,7 @@ className="md:flex md:items-center mb-6">
       </motion.label>
     </div>
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={studentName} disabled {...register("StudentName")} />
     </div>
   </motion.div >
@@ -189,7 +201,7 @@ className="md:flex md:items-center mb-6">
       </motion.label>
     </div>
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={studentIC} disabled {...register("StudentIC")} />
     </div>
   </motion.div >
@@ -203,7 +215,7 @@ className="md:flex md:items-center mb-6">
     </div>
     
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={school} disabled {...register("SchoolName")}  />
     </div>
   </motion.div >
@@ -216,7 +228,7 @@ className="md:flex md:items-center mb-6">
       </motion.label>
     </div>
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={userYear} disabled {...register("Grade")} />
     </div>
   </motion.div >
@@ -229,7 +241,7 @@ className="md:flex md:items-center mb-6">
       </motion.label>
     </div>
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={contact} disabled {...register("ContactNumber")} />
     </div>
   </motion.div  >
@@ -241,7 +253,7 @@ className="md:flex md:items-center mb-6">
       </motion.label>
     </div>
     <div className="md:w-2/3">
-      <input className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
        type="text" defaultValue={""}  value={email} disabled {...register("Email")} />
     </div>
   </motion.div>
@@ -309,14 +321,30 @@ whileHover={!buttonOn &&{
   boxShadow: "0px 0px 8px rgb(255,255,255)"
 }}
 
-type="submit" className={`${buttonOn ? "text-gray-400 border-gray-400 " : "border-white text-white"}'flex items-center justify-center border ml-[30%] w-20 rounded-full p-2 mt-5'`}  disabled={false} id='submitButton'  >Submit</motion.button>
+type="submit" className={`${buttonOn ? "text-gray-400 border-gray-400 " : "border-white text-white"}'flex items-center justify-center border ml-[50%] lg:ml-[30%] w-20 rounded-full p-2 mt-5'`}  disabled={buttonOn} id='submitButton'  >Submit</motion.button>
 </motion.form>
 
-<div className=' mt-[15%]'>
+: 
 
-</div>
+<motion.div variants={endPageVarients} initial={"hidden"} animate={"show"} >
+<motion.h1 variants={divVarients} className='mt-[5%] justify-center items-center flex text-center font-extrabold text-sm md:text-base lg:text-3xl '>Form has been successfully registered. <br/>Welcome to ALoKAS family, we will contact you shortly  </motion.h1>
 
-</motion.div></div>
+<div className='flex justify-center items-center h-[250px]'><Link href={"/"} passHref><a>
+<motion.button
+whileHover={{
+  
+  scale: 1.1,
+  textShadow: "0px 0px 8px rgb(255,255,255)",
+  boxShadow: "0px 0px 8px rgb(255,255,255)"
+}}
+variants={divVarients} className=' border  w-auto rounded-full p-4 mt-5 border-white text-white'>Make new request</motion.button>
+</a></Link></div>
+</motion.div>
+
+
+}</AnimatePresence>
+
+</motion.div>
     )
 }
 
