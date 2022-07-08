@@ -80,7 +80,7 @@ email : yup.string().email().required("Email is a required field"),
         return;
       }
       try {
-        const response = await fetch("/api/register", {
+        const response = await fetch("https://alokas-registration-form.vercel.app/api/register", {
           method: "POST",
           body: JSON.stringify({ captcha: captchaCode }),
           headers: {

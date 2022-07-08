@@ -88,7 +88,7 @@ const fullData = {
 
 
    // API endpoint where we send form data.
-   const endpoint = '/api/form'
+   const endpoint = 'https://alokas-registration-form.vercel.app/api/form'
  
    // Form the request for sending data to the server.
    const options = {
