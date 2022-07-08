@@ -66,9 +66,9 @@ const mailData = {
   //   // Sends a HTTP bad request error code
   //   return res.status(400).json({ data: 'First or last name not found' })
   // }
-  await dbConnect()
-if(req.method == "POST"){
   try {
+    await dbConnect()
+
     const UserDataToDB = await UserDataDB.create({
      "subjects": body ,
      "userData" : userData,
@@ -77,9 +77,9 @@ if(req.method == "POST"){
     res.status(201).json({ success: true, data: UserDataToDB })
   } catch (error) {
     res.status(400).json({ success: false })
-    console.log("what is the errro",error)
+    // console.log("what is the errro",error)
   }
-}
+
 
   // Found the name.
   // Sends a HTTP success code
