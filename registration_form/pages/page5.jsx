@@ -106,7 +106,7 @@ const fullData = {
    // Send the form data to our forms API on Vercel and get a response.
   //  const response = await fetch(endpoint, options)
    await fetch(endpoint, options)
-  //  await fetch(endpointDatabase, options)
+   await fetch(endpointDatabase, options)
 
    // Get the response data from server as JSON.
    // If server returns the name submitted, that means the form works.
