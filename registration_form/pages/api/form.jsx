@@ -67,13 +67,13 @@ const mailData = {
   //   return res.status(400).json({ data: 'First or last name not found' })
   // }
   try {
-    await dbConnect().catch(err => console.log(err))
+    await dbConnect()
 
     const UserDataToDB = await UserDataDB.create({
      "subjects": body ,
      "userData" : userData,
      "year" : userYear
-  }).catch(err => console.log(err)) /* create a new model in the database */
+  }) /* create a new model in the database */
     res.status(201).json({ success: true, data: UserDataToDB })
   } catch (error) {
     res.status(400).json({ success: false })
