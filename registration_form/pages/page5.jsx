@@ -74,7 +74,6 @@ const { control,register, handleSubmit,reset, setValue, formState: {errors} } = 
 
   const onSubmit = async(data) => { 
     // console.log("check the data and its content",data)
-  
   // console.log(userInfo)
   // console.log(subjectList,userYear)
   // console.log(userYear)
@@ -111,6 +110,8 @@ const fullData = {
   //  const result = await response.json()
   //  alert(`The form has been successfully submitted, You will here from us shortly. Redirecting you to the main page`)
    setPageEnd(false)
+   data.preventDefault()
+
   // Router.push("/")
   };
 
