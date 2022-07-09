@@ -38,9 +38,10 @@ email : yup.string().email().required("Email is a required field"),
 
   const { control, handleSubmit, formState: {errors} } = useForm({resolver: yupResolver(schema)});
 
-  const onSubmit =  async(data) => {
+  const onSubmit =  async(data,e) => {
     // Execute the reCAPTCHA when the form is submitted
-    recaptchaRef.current.execute();
+    e.preventDefault()
+   await recaptchaRef.current.execute();
     
     setUserData(data)
 
@@ -100,8 +101,9 @@ email : yup.string().email().required("Email is a required field"),
       } finally {
         // Reset the reCAPTCHA when the request has failed or succeeeded
         // so that it can be executed again if user submits another email.
-        recaptchaRef.current.reset();
         Router.push("/page5")
+        recaptchaRef.current.reset();
+
       }
     };
 

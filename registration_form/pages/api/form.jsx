@@ -43,13 +43,13 @@ const mailData = {
     student name : ${userData.studentName} , student year : ${userYear} , contact number : ${userData.contact}
     `,
    }
-   transporter.sendMail(mailData, function (err, info) {
+  await transporter.sendMail(mailData, function (err, info) {
     if(err)
       console.log("what is this error",err)
     else
       console.log("no error while sending",info)
   })
-  transporter.sendMail(mailDataAdmin, function (err, info) {
+ await transporter.sendMail(mailDataAdmin, function (err, info) {
     if(err)
       console.log("what is this error",err)
     else
