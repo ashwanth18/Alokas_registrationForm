@@ -73,7 +73,7 @@ const mailData = {
      "subjects": body ,
      "userData" : userData,
      "year" : userYear
-  }) /* create a new model in the database */
+  }).catch(err => console.log(err)) /* create a new model in the database */
     res.status(201).json({ success: true, data: UserDataToDB })
   } catch (error) {
     res.status(400).json({ success: false })
