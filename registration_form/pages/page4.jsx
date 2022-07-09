@@ -101,10 +101,11 @@ email : yup.string().email().required("Email is a required field"),
       } finally {
         // Reset the reCAPTCHA when the request has failed or succeeeded
         // so that it can be executed again if user submits another email.
-        Router.push("/page5")
         recaptchaRef.current.reset();
 
       }
+      Router.push("/page5")
+
     };
 
 

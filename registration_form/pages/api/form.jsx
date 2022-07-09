@@ -66,7 +66,7 @@ const mailData = {
   //   // Sends a HTTP bad request error code
   //   return res.status(400).json({ data: 'First or last name not found' })
   // }
-  await dbConnect()
+      await dbConnect()
 
   try {
 
