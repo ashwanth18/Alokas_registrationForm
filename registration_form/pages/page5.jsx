@@ -89,7 +89,7 @@ const fullData = {
 
    // API endpoint where we send form data.
    const endpoint = '/api/form'
- 
+ const endpointDatabase = "/api/database"
    // Form the request for sending data to the server.
    const options = {
      // The method is POST because we are sending data.
@@ -106,6 +106,8 @@ const fullData = {
    // Send the form data to our forms API on Vercel and get a response.
   //  const response = await fetch(endpoint, options)
    await fetch(endpoint, options)
+   await fetch(endpointDatabase, options)
+
    // Get the response data from server as JSON.
    // If server returns the name submitted, that means the form works.
   //  const result = await response.json()
