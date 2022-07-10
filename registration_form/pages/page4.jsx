@@ -39,7 +39,7 @@ email : yup.string().email().required("Email is a required field"),
   const { control, handleSubmit, formState: {errors}, formState : {isSubmitting}  } = useForm({resolver: yupResolver(schema)});
   const onSubmit =  async(data,e) => {
     // Execute the reCAPTCHA when the form is submitted
-    e.preventDefault()
+    // e.preventDefault()
    await recaptchaRef.current.execute();
     
     setUserData(data)
@@ -290,16 +290,15 @@ render={({field }) =>
 <p></p>
 {/* <Link href={"/page5"} passHref >  */} 
 {/* <a > */} 
-{/* {!isSubmitting ?  */}
 <motion.button
   whileHover={{
     scale: 1.1,
     textShadow: "0px 0px 8px rgb(255,255,255)",
     boxShadow: "0px 0px 8px rgb(255,255,255)"
   }}
-type="submit" className='border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center'  >Submit </motion.button>
-{/* :     <div className='h-10 mt-3 flex items-center justify-center content-center'> <CircularProgress /> </div> */}
-{/* } */}
+type="submit" className={` ${isSubmitting && "hidden"}'border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center'`}  >Submit </motion.button>
+ {isSubmitting &&  <div className='h-10 mt-3 flex items-center justify-center content-center'> <CircularProgress /> </div>}
+
 {/* </a> */} 
 {/* </Link> */} 
 </motion.form>
