@@ -18,6 +18,7 @@ import { Palette } from '@mui/icons-material';
 import ReCAPTCHA from "react-google-recaptcha";
 function Page4() {
 const [userData, setUserData] = useRecoilState(userDataAtom);
+const [isSubmitting , setIsSubmitting] = useState()
 const recaptchaRef = React.createRef();
 // const subjectList = useRecoilValue(subjectsAtom);
 // const subjectListsss = useRecoilValue(subjectState);
@@ -200,6 +201,9 @@ MuiTextField : {
 //     },
 //   },
 // });
+const buttonHandler  = () => {
+setIsSubmitting(true)
+}
   return (
 
     <motion.div className='h-auto min-h-screen  mb-14'
@@ -296,8 +300,9 @@ render={({field }) =>
     textShadow: "0px 0px 8px rgb(255,255,255)",
     boxShadow: "0px 0px 8px rgb(255,255,255)"
   }}
-type="submit" className='border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center' >Submit </motion.button>
- <div className='h-10 mt-3 flex items-center justify-center content-center'> <CircularProgress /> </div>
+type="submit" onChange={buttonHandler}  className={` ${isSubmitting && "hidden"}'border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center'`}  >Submit </motion.button>
+ {isSubmitting &&  <div className='h-10 mt-3 flex items-center justify-center content-center'> <CircularProgress /> </div>}
+
 {/* </a> */} 
 {/* </Link> */} 
 </motion.form>
