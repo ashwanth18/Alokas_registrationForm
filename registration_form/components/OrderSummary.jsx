@@ -6,6 +6,8 @@ import { subjectsAtom } from '../atoms/subjectsAtom'
 import Coupon from './Coupon'
 import {motion} from "framer-motion";
 import { gradeAtom } from '../atoms/gradeAtom'
+import { useMediaQuery } from 'react-responsive'
+
 function OrderSummary() {
 
 const totalPrice = useRecoilValue(subjectState)
@@ -13,24 +15,37 @@ const subjectList = useRecoilValue(subjectsAtom)
 const couponPrice = 0
 
 const [selectedGrade, setSelectedGrade] = useState([]);
-
+// const [animation ,setAnimation] = useState()
+// const isTabletOrMobile = useMediaQuery({ query: '(max-width: 600px)' })
 useEffect(() =>{
 const item = JSON.parse(localStorage.getItem("testGrade"));
 if(item){
   setSelectedGrade(item);
 }
 },[]);
+// useEffect(() => {
+//     {isTabletOrMobile ? setAnimation(mobileVarients) : setAnimation(pcVarients)}
+
+// },[isTabletOrMobile])
+// console.log(animation)
+const mobileVarients = {
+    initial : { opacity : 0},
+    animate : { opacity : 1,
+    transition : { delay :1,         ease: "easeInOut"
+},
+    },
+}
+const pcVarients = {
+    initial : {x : "100vw"},
+    animate : {x : 0,
+    transition : {
+        delay :1,
+        ease: "easeInOut"
+    }}
+}
   return (
     
-    <motion.div initial={{
-        x:"100vw"
-    }} 
-    animate={{
-        x:0
-    }}
-    transition={{
-        delay:1
-    }}
+    <motion.div variants={mobileVarients} initial= "initial" animate = "animate"
     className='m-7 w-[80%] md:mr-12 md:w-1/3'> Summary
 
 <div>

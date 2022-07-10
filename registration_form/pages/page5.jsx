@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 import {useForm, Controller, SubmitHandler} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Box, Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { Box, Checkbox, CircularProgress, FormControlLabel, TextField } from '@mui/material';
 import { errorSelector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { blue, green } from '@mui/material/colors';
 
@@ -50,12 +50,7 @@ useEffect(() =>{
   
   },[]);
 
-  useEffect(( ) => {
 
-    register('StudentName', { value: 'bill' });
-    register('ParentName', { value: 'bill' });
-    register('StudentIC', { value: 'bill' });
-  },[]);
 // console.log("what is this",userInfo)
 // console.log('wanna test this shit out' , subjectListsss)
 // console.log('wanna test this shit out for old shit' , subjectList)
@@ -64,7 +59,7 @@ const {parentName, studentName, studentIC, school, contact, email} = userInfo
 // console.log("should return the userdate",Object.keys(userInfo))
 // console.log(contact)
 // console.log("should return the parentName",parentName)
-const { control,register, handleSubmit,reset, setValue, formState: {errors} } = useForm({
+const { control,register, handleSubmit,reset, setValue, formState: {errors}, formState: {isSubmitting} } = useForm({
   // defaultValues: useMemo(() => userInfo, [userInfo]),
 
 });
@@ -105,7 +100,7 @@ const fullData = {
  
    // Send the form data to our forms API on Vercel and get a response.
   //  const response = await fetch(endpoint, options)
-   await fetch(endpoint, options)
+   await fetch(endpoint, options) 
    await fetch(endpointDatabase, options)
 
    // Get the response data from server as JSON.
@@ -324,7 +319,8 @@ whileHover={!buttonOn &&{
   boxShadow: "0px 0px 8px rgb(255,255,255)"
 }}
 
-type="submit" className={`${buttonOn ? "text-gray-400 border-gray-400 " : "border-white text-white"}'flex items-center justify-center border ml-[50%] lg:ml-[30%] w-20 rounded-full p-2 mt-5'`}  disabled={buttonOn} id='submitButton'  >Submit</motion.button>
+type="submit" className={` ${isSubmitting && "hidden" }  ${buttonOn ? "text-gray-400 border-gray-400 " : "border-white text-white"}'flex items-center justify-center border ml-[50%] lg:ml-[30%] w-20 rounded-full p-2 mt-5'`}  disabled={buttonOn} id='submitButton'  >Submit</motion.button>
+{ isSubmitting && <div className='flex items-center justify-center border ml-[50%] lg:ml-[30%] w-20 rounded-full p-2 mt-5'>  <CircularProgress /> </div>}
 </motion.form>
 
 : 

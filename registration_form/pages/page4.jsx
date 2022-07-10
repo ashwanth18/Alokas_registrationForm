@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {useForm, Controller, SubmitHandler} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {  TextField,  } from '@mui/material';
+import {  CircularProgress, TextField,  } from '@mui/material';
 import { errorSelector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { blue, green } from '@mui/material/colors';
 import { subjectsAtom } from '../atoms/subjectsAtom';
@@ -36,8 +36,7 @@ email : yup.string().email().required("Email is a required field"),
 
 }).required();
 
-  const { control, handleSubmit, formState: {errors} } = useForm({resolver: yupResolver(schema)});
-
+  const { control, handleSubmit, formState: {errors}, formState : {isSubmitting}  } = useForm({resolver: yupResolver(schema)});
   const onSubmit =  async(data,e) => {
     // Execute the reCAPTCHA when the form is submitted
     e.preventDefault()
@@ -201,7 +200,6 @@ MuiTextField : {
 //     },
 //   },
 // });
-
   return (
 
     <motion.div className='h-auto min-h-screen  mb-14'
@@ -292,6 +290,7 @@ render={({field }) =>
 <p></p>
 {/* <Link href={"/page5"} passHref >  */} 
 {/* <a > */} 
+{!isSubmitting ? 
 <motion.button
   whileHover={{
     scale: 1.1,
@@ -299,6 +298,8 @@ render={({field }) =>
     boxShadow: "0px 0px 8px rgb(255,255,255)"
   }}
 type="submit" className='border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center'  >Submit </motion.button>
+:     <div className='h-10 mt-3 flex items-center justify-center content-center'> <CircularProgress /> </div>
+}
 {/* </a> */} 
 {/* </Link> */} 
 </motion.form>
