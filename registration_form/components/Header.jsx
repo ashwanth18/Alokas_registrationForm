@@ -18,7 +18,7 @@ function Header() {
       </Head>
 
         <div className="flex items-center justify-center">
-<Image src={"/Finalversion-1"} width={160} height={160}></Image>
+<Image src={"/AlokasEdu.png"} width={160} height={160}></Image>
 {/* <Logo></Logo> */}
 </div>
       <div className="bg-white border-b border-solid " />
