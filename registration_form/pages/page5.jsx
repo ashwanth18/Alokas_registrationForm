@@ -98,6 +98,8 @@ if(artsSubjectList != null) {
   
   })}
 const courseYear = userYear.toLowerCase().replace(/\s/g, '');
+const filteredTuitionSubject = [];
+
 if(subjectList != null) {
   subjectList.forEach((value,index) => {
   filteredTuitionSubject.push( `${courseYear}_${value['subj']}`)
