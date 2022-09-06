@@ -18,7 +18,7 @@ import { Palette } from '@mui/icons-material';
 import ReCAPTCHA from "react-google-recaptcha";
 function Page4() {
 const [userData, setUserData] = useRecoilState(userDataAtom);
-const [isSubmitting , setIsSubmitting] = useState()
+const [isSubmitting , setIsSubmitting] = useState(false)
 const recaptchaRef = React.createRef();
 // const subjectList = useRecoilValue(subjectsAtom);
 // const subjectListsss = useRecoilValue(subjectState);
@@ -40,7 +40,8 @@ email : yup.string().email().required("Email is a required field"),
   const { control, handleSubmit, formState: {errors}  } = useForm({resolver: yupResolver(schema)});
   const onSubmit =  async(data,e) => {
     // Execute the reCAPTCHA when the form is submitted
-    e.preventDefault()
+    // e.preventDefault()
+    setIsSubmitting(true);
    await recaptchaRef.current.execute();
     
     setUserData(data)
@@ -104,6 +105,7 @@ email : yup.string().email().required("Email is a required field"),
         recaptchaRef.current.reset();
 
       }
+      setIsSubmitting(false);
       Router.push("/page5")
 
     };
@@ -202,7 +204,7 @@ MuiTextField : {
 //   },
 // });
 const buttonHandler  = () => {
-setIsSubmitting(true)
+// setIsSubmitting(true)
 }
   return (
 
@@ -294,13 +296,14 @@ render={({field }) =>
 <p></p>
 {/* <Link href={"/page5"} passHref >  */} 
 {/* <a > */} 
-<motion.button
+{!isSubmitting && <motion.button
   whileHover={{
     scale: 1.1,
     textShadow: "0px 0px 8px rgb(255,255,255)",
     boxShadow: "0px 0px 8px rgb(255,255,255)"
   }}
-type="submit" onChange={buttonHandler}  className={` ${isSubmitting && "hidden"}'border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center'`}  >Submit </motion.button>
+type="submit" onChange={buttonHandler}  className={` 'border p-4 outline-1 rounded-full w-auto h-10 mt-3 flex items-center justify-center content-center'`}  >Submit </motion.button> }
+
  {isSubmitting &&  <div className='h-10 mt-3 flex items-center justify-center content-center'> <CircularProgress /> </div>}
 
 {/* </a> */} 

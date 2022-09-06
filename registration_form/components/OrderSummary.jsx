@@ -7,17 +7,32 @@ import Coupon from './Coupon'
 import {motion} from "framer-motion";
 import { gradeAtom } from '../atoms/gradeAtom'
 import { useMediaQuery } from 'react-responsive'
+import { artsSubjectAtom } from '../atoms/artsSubjectAtom'
 
 function OrderSummary() {
 
 const totalPrice = useRecoilValue(subjectState)
-const subjectList = useRecoilValue(subjectsAtom)
+// const subjectList = useRecoilValue(subjectsAtom)
+// const artsList = useRecoilValue(artsSubjectAtom);
 const couponPrice = 0
+const [subjectList,setSubjectList] = useState([]);
 
+const [artsList,setArtsList] = useState([]);
 const [selectedGrade, setSelectedGrade] = useState([]);
 // const [animation ,setAnimation] = useState()
 // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 600px)' })
 useEffect(() =>{
+    const subjectList = JSON.parse(localStorage.getItem("subjectList"));
+    if(subjectList) {
+        setSubjectList(subjectList);
+    }
+    const artList = JSON.parse(localStorage.getItem("artsSubjectList"));
+    if(artList) {
+        setArtsList(artList);
+    }
+if(item){
+  setSelectedGrade(item);
+}
 const item = JSON.parse(localStorage.getItem("testGrade"));
 if(item){
   setSelectedGrade(item);
@@ -51,8 +66,8 @@ const pcVarients = {
 <div>
 
 {/* subject list  */}
-<div className='rounded-md bg-slate-500 p-4'>    
-Subjects:
+<div className='rounded-md bg-slate-500 p-4'>  
+{subjectList &&  subjectList.length ? <div> Tuition Subjects:
 { subjectList.map((list,index) => {
 return(
 
@@ -67,17 +82,28 @@ return(
 
 }) 
 
-}
-{/* <div className='flex justify-between '>
-    <div>Coupon Discount</div>
-    <div>RM{couponPrice.toFixed(2)}</div>
+}</div> : ''}  
+
+{artsList && artsList.length ? <div>Arts Subjects:
+{ artsList.map((list,index) => {
+return(
+
+<div className=' flex    justify-between  ' key={index}>
+<div className='indent-10'>{
+    list.subj    
+    } </div>
+
 </div>
-<div className='flex justify-between border-t'>
-    <div>Total</div>
-    <div>RM{totalPrice.toFixed(2)}</div>
-</div> */}
-    {/* total pric  */}
+
+);
+
+}) 
+
+}</div> : ''}
+
 </div>
+
+
 
 </div>
 

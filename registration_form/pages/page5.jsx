@@ -19,14 +19,28 @@ import Header from '../components/Header';
 import {AnimatePresence, motion} from "framer-motion";
 import { Grade, Opacity } from '@mui/icons-material';
 import { gradeAtom } from '../atoms/gradeAtom';
+import {useCollection } from 'react-firebase-hooks/firestore';
+
+
 function Page5() {
-  const setGrade = useSetRecoilState(gradeAtom)
+
+// const [registration,registrationLoading,registrationError] = useCollection(db.collection('registration'),{});
+// const dbs = db;
+
+
+
+
+  // const setGrade = useSetRecoilState(gradeAtom)
 const setTotalPrice = useSetRecoilState(subjectState)
-const setSubjectList = useSetRecoilState(subjectsAtom)
-const subjectList = useRecoilValue(subjectsAtom)
+// const setSubjectList = useSetRecoilState(subjectsAtom)
+// const subjectList = useRecoilValue(subjectsAtom)
 
 const [userInfo , setUserInfo] = useState([])
-const [userYear , setUserYear] = useState([])
+const [subjectList , setSubjectList] = useState([])
+
+const [artsSubjectList , setArtsSubjectList] = useState([])
+const [combinedList , setCombinedList] = useState([])
+const [userYear , setUserYear] = useState('')
 const [buttonOn , setButtonOn] = useState([false])
 const [pageEnd , setPageEnd] = useState(true)
 // const [userSubject, setUserSubject] = useState([])
@@ -34,14 +48,21 @@ const [pageEnd , setPageEnd] = useState(true)
 useEffect(() =>{
  
   const item =  JSON.parse(localStorage.getItem("UserData"));
-  const itemYear = JSON.parse(localStorage.getItem("testGrade"))
   const itemSubject = JSON.parse(localStorage.getItem("subjectList"))
+  const artSubject = JSON.parse(localStorage.getItem("artsSubjectList"))
+  const grade = JSON.parse(localStorage.getItem("testGrade"))
+
   const itemTotalPrice = JSON.parse(localStorage.getItem("totalPrice"))
-  if(item && itemYear && itemSubject && itemTotalPrice){
-    setUserInfo(item);
-    setGrade(itemYear);
-    setUserYear(itemYear)
-    setSubjectList(itemSubject)
+  if(item ){
+    setUserInfo(item);    
+    setSubjectList(itemSubject);
+    setArtsSubjectList(artSubject);
+if(grade){
+  setUserYear(grade);
+
+}
+    // setUserYear(itemYear)
+    // setSubjectList(itemSubject)
     setTotalPrice(itemTotalPrice)
     // setValue("parentName",item.parentName)
   }
@@ -49,6 +70,7 @@ useEffect(() =>{
  
   
   },[]);
+
 
 
 // console.log("what is this",userInfo)
@@ -69,14 +91,45 @@ const { control,register, handleSubmit,reset, setValue, formState: {errors}, for
 
   const onSubmit = async(data,e) => { 
 e.preventDefault()
+const filteredArtsSubject = [];
+if(artsSubjectList != null) { 
+  artsSubjectList.forEach((value,index) => {
+  filteredArtsSubject.push(value['subj'])
+  
+  })}
+
+const filteredTuitionSubject = [];
+if(subjectList != null) {
+  subjectList.forEach((value,index) => {
+  filteredTuitionSubject.push(value['subj'])
+  
+  })}
+const combinedList = [];
+if(filteredTuitionSubject.length != 0 && filteredArtsSubject.length != 0) {
+  const combine = filteredTuitionSubject.concat(filteredArtsSubject)
+  combinedList = combine
+} else if (filteredTuitionSubject.length != 0) {
+combinedList = filteredTuitionSubject
+}
+else if(filteredArtsSubject.length != 0) {
+  combinedList = filteredArtsSubject;
+}
     // console.log("check the data and its content",data)
   // console.log(userInfo)
   // console.log(subjectList,userYear)
   // console.log(userYear)
+  // if(subjectList == undefined) {
+  //   subjectList = [];
+  // }
+  // if(artsSubjectList == undefined) {
+  //   artsSubjectList = [];
+  // }
 const fullData = {
-  subjects : subjectList,
+  combinedSubjects : combinedList,
+  tuitionSubjects : filteredTuitionSubject,
+  artsSubjects : filteredArtsSubject,
   userData : userInfo,
-  year : userYear
+  userGrade : userYear,
 }
   // Send the data to the server in JSON format.
    const JSONdata = JSON.stringify(fullData)
@@ -108,7 +161,9 @@ const fullData = {
   //  const result = await response.json()
   //  alert(`The form has been successfully submitted, You will here from us shortly. Redirecting you to the main page`)
    setPageEnd(false)
+if(pageEnd == false) {
 
+}
   // Router.push("/")
   };
 
@@ -217,19 +272,7 @@ className="md:flex md:items-center mb-6">
        type="text" defaultValue={""}  value={school} disabled {...register("SchoolName")}  />
     </div>
   </motion.div >
-  <motion.div 
-  variants={divVarients}
-  className="md:flex md:items-center mb-6">
-    <div className="md:w-1/3">
-      <motion.label variants={inputVarients} className="block text-gray-200 font-bold md:text-right mb-1 md:mb-0 pr-4" >
-        Grade
-      </motion.label>
-    </div>
-    <div className="md:w-2/3">
-      <input className="h-14 w-[100%] md:w-[70%] pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
-       type="text" defaultValue={""}  value={userYear} disabled {...register("Grade")} />
-    </div>
-  </motion.div >
+
   <motion.div 
   variants={divVarients}
   className="md:flex md:items-center mb-6">
@@ -280,7 +323,7 @@ className="md:flex md:items-center mb-6">
 </div>
 
 <p></p>
-<Link href={"/page1"} passHref>
+<Link href={"/page0_5"} passHref>
 <a >
 <motion.button
 initial={{

@@ -3,9 +3,15 @@
 import Link from 'next/link'
 import Button from '../components/Button'
 import Header from '../components/Header'
-import styles from '../styles/Home.module.css'
+
 import {motion,AnimatePresence} from "framer-motion";
+import { useEffect } from 'react';
+
 function Home(){
+  useEffect(() =>{
+ 
+   window.localStorage.clear();   
+    },[]);
   return (
     <div className='h-auto min-h-screen'
 
@@ -17,14 +23,14 @@ function Home(){
     animate={{y:0}}
     exit={{y:"-100vh"}}
     transition={{ease:"easeInOut"}}>
-    <h1 className='text-center items-center font-extrabold mt-[20%] lg:mt-[15%] text-3xl'> ALoKAS Tuition Registration Form</h1>
+    <h1 className='text-center items-center font-extrabold mt-[20%] lg:mt-[15%] text-3xl'> ALoKAS Registration Form</h1>
     {/* banner */}
     <section>
       
       <div
       className='flex justify-center text-center items-center mt-[25%] md:mt-[15%] lg:mt-[5%] '>
         
-        <Link href="/page1" passHref>
+        <Link href="/page0_5" passHref>
       <a><Button value = {"Start"} /></a>
       </Link>
       </div>

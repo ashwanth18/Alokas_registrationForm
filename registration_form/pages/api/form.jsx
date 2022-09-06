@@ -1,10 +1,9 @@
-import UserDataDB from "../../models/UserDataDB"
-import dbConnect from '../../lib/mongodb'
+
 
 
 export default async function handler(req, res) {
   // Get data submitted in request's body.
-  const body = req.body.subjects
+  const body = req.body.combinedSubjects
   const userData = req.body.userData
   const userYear = req.body.year
 // console.log("where is the data?", req.body)
@@ -40,7 +39,7 @@ const mailData = {
     to: `alokaseducare@gmail.com`,
     subject: `Message From ALoKAS: submission form  `,
     text: `
-    student name : ${userData.studentName} , student year : ${userYear} , contact number : ${userData.contact}
+    student name : ${userData.studentName} , student subjects : ${userYear} , contact number : ${userData.contact}
     `,
    }
   await transporter.sendMail(mailData, function (err, info) {
@@ -66,20 +65,7 @@ const mailData = {
   //   // Sends a HTTP bad request error code
   //   return res.status(400).json({ data: 'First or last name not found' })
   // }
-      await dbConnect()
 
-  try {
-
-    const UserDataToDB = await UserDataDB.create({
-     "subjects": body ,
-     "userData" : userData,
-     "year" : userYear
-  }) /* create a new model in the database */
-    res.status(201).json({ success: true, data: UserDataToDB })
-  } catch (error) {
-    res.status(400).json({ success: false })
-    // console.log("what is the errro",error)
-  }
 
 
   // Found the name.

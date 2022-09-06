@@ -8,6 +8,7 @@ import Button from '../components/Button'
 import Header from '../components/Header'
 import SubjectList from '../components/SubjectList'
 import {motion} from "framer-motion"
+import { subjectsAtom } from '../atoms/subjectsAtom'
 
 function Page3_1({}) {
 
@@ -45,10 +46,16 @@ function Page3_1({}) {
 
   ];
 
+const [category, setCategory] = useState([]);
 const [selectedGrade, setSelectedGrade] = useState([]);
 
 useEffect(() =>{
+  const categoryItem = JSON.parse(localStorage.getItem("category"));
+
 const item = JSON.parse(localStorage.getItem("testGrade"));
+if(categoryItem){
+  setCategory(categoryItem);
+}
 if(item){
   setSelectedGrade(item);
 }
@@ -68,7 +75,7 @@ if(item){
    {` ${selectedGrade} subjects: Select 1 or more subjects`}
 </h1>
 
-<SubjectList subjects = {subjects} />
+<SubjectList subjects = {subjects} category = {category} />
   
 
 </motion.div>

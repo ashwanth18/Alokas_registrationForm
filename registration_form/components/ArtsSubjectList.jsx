@@ -6,14 +6,14 @@ import React, { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { subjectState } from '../atoms/subjectAtom';
-import { subjectsAtom } from '../atoms/subjectsAtom';
+import { artsSubjectAtom } from '../atoms/artsSubjectAtom';
 import TotalPrice from './TotalPrice';
 import {motion, AnimatePresence} from "framer-motion";
 
-function SubjectList(prop) {
+function ArtsSubjectList(prop) {
 
 const [totalPrice , setTotalPrice] = useRecoilState(subjectState);
-const [subjectsSelectedList, setSubjectsSelectedList] = useRecoilState(subjectsAtom);
+const [subjectsSelectedList, setSubjectsSelectedList] = useRecoilState(artsSubjectAtom);
 const subjects = prop.subjects
 const categoryType = prop.category
 // console.log("what do i get here?",subjects)
@@ -150,7 +150,7 @@ if(currVal) { return subjects[currIndex]; }
 }
 useEffect(() => {
   localStorage.setItem("totalPrice",JSON.stringify(totalPrice))
-  localStorage.setItem("subjectList",JSON.stringify(subjectsSelectedList))
+  localStorage.setItem("artsSubjectList",JSON.stringify(subjectsSelectedList))
   localStorage.setItem("idkIfitWillWorks", JSON.stringify(checked))
 },[subjectsSelectedList,checked,totalPrice]);
 // useEffect(() => {
@@ -262,4 +262,4 @@ opacity: 0,
   )
 }
 
-export default SubjectList
+export default ArtsSubjectList
