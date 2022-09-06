@@ -97,11 +97,10 @@ if(artsSubjectList != null) {
   filteredArtsSubject.push(value['subj'])
   
   })}
-
-const filteredTuitionSubject = [];
+const courseYear = userYear.toLowerCase().replace(/\s/g, '');
 if(subjectList != null) {
   subjectList.forEach((value,index) => {
-  filteredTuitionSubject.push(value['subj'])
+  filteredTuitionSubject.push( `${courseYear}_${value['subj']}`)
   
   })}
 const combinedList = [];
