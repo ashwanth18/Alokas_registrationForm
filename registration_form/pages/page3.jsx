@@ -15,27 +15,27 @@ function Page3({}) {
   const subjects = [
     {
       id : 0,
-      subj : "Bahasa Malaysia",
+      subj : "Bahasa Malaysia (Tamil)",
       price : 60,
     },
     {
        id : 1,
-      subj : "English ",
+      subj : "English (Tamil) ",
       price : 60,
     },
     {
        id : 2,
-      subj : "Mathematics",
+      subj : "Mathematics (Tamil)",
       price : 60,
     },
     {
        id : 3,
-      subj : "Science",
+      subj : "Science (Tamil)",
       price : 60,
     },
     {
        id : 4,
-      subj : "Tamil",
+      subj : "Tamil (Tamil)",
       price : 60,
     },
 
