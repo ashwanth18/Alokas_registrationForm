@@ -29,7 +29,7 @@ function Page3_4({}) {
     },
     {
        id : 3,
-      subj : "Additional Mathematics",
+      subj : "Additional Mathematic",
       price : 60,
     },
     {
