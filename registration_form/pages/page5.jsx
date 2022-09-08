@@ -94,7 +94,7 @@ e.preventDefault()
 const filteredArtsSubject = [];
 if(artsSubjectList != null) { 
   artsSubjectList.forEach((value,index) => {
-  filteredArtsSubject.push(value['subj'])
+  filteredArtsSubject.push(`art_${value['subj'].toLowerCase().replace(/\s/g, '')}`)
   
   })}
 const courseYear = userYear.toLowerCase().replace(/\s/g, '');
@@ -102,7 +102,7 @@ const filteredTuitionSubject = [];
 
 if(subjectList != null) {
   subjectList.forEach((value,index) => {
-  filteredTuitionSubject.push( `${courseYear}_${value['subj']}`)
+  filteredTuitionSubject.push( `${courseYear}_${value['subj'].toLowerCase().replace(/\s/g, '')}`)
   
   })}
 const combinedList = [];
