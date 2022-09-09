@@ -20,7 +20,7 @@ function Page3_1({}) {
     },
     {
        id : 1,
-      subj : "English ",
+      subj : "English",
       price : 60,
     },
     {

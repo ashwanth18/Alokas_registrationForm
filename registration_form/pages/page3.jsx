@@ -15,12 +15,12 @@ function Page3({}) {
   const subjects = [
     {
       id : 0,
-      subj : "Bahasa Malaysia ",
+      subj : "Bahasa Malaysia",
       price : 60,
     },
     {
        id : 1,
-      subj : "English  ",
+      subj : "English",
       price : 60,
     },
     {
