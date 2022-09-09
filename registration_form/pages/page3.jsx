@@ -35,7 +35,7 @@ function Page3({}) {
     },
     {
        id : 4,
-      subj : "Tamil (Tamil)",
+      subj : "Tamil",
       price : 60,
     },
 
