@@ -91,29 +91,37 @@ const { control,register, handleSubmit,reset, setValue, formState: {errors}, for
 
   const onSubmit = async(data,e) => { 
 e.preventDefault()
+const unfilteredArtsSubject = [];
 const filteredArtsSubject = [];
 if(artsSubjectList != null) { 
   artsSubjectList.forEach((value,index) => {
   filteredArtsSubject.push(`art_${value['subj'].toLowerCase().replace(/\s/g, '')}`)
-  
+  unfilteredArtsSubject.push(value['subj']);
   })}
 const courseYear = userYear.toLowerCase().replace(/\s/g, '');
+const unfilteredTuitionSubject = [];
 const filteredTuitionSubject = [];
 
 if(subjectList != null) {
   subjectList.forEach((value,index) => {
   filteredTuitionSubject.push( `${courseYear}_${value['subj'].toLowerCase().replace(/\s/g, '')}`)
-  
+  unfilteredTuitionSubject.push(value['subj']);
   })}
+  const combinedUnfilteredList = [];
 const combinedList = [];
 if(filteredTuitionSubject.length != 0 && filteredArtsSubject.length != 0) {
   const combine = filteredTuitionSubject.concat(filteredArtsSubject)
+  const combineUnfilteredSubjects = unfilteredTuitionSubject.concat(unfilteredArtsSubject)
+
   combinedList = combine
+  combinedUnfilteredList = combineUnfilteredSubjects
 } else if (filteredTuitionSubject.length != 0) {
-combinedList = filteredTuitionSubject
+combinedList = filteredTuitionSubject;
+combinedUnfilteredList = unfilteredTuitionSubject;
 }
 else if(filteredArtsSubject.length != 0) {
   combinedList = filteredArtsSubject;
+  combinedUnfilteredList = unfilteredArtsSubject;
 }
     // console.log("check the data and its content",data)
   // console.log(userInfo)
@@ -127,6 +135,7 @@ else if(filteredArtsSubject.length != 0) {
   // }
 const fullData = {
   combinedSubjects : combinedList,
+  unfilteredCombinedSubjects : combinedUnfilteredList,
   tuitionSubjects : filteredTuitionSubject,
   artsSubjects : filteredArtsSubject,
   userData : userInfo,

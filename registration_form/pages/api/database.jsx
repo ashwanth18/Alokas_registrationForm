@@ -5,6 +5,7 @@ import app from '../../firebase/clientApp';
 import { getFirestore, collection, getDocs, doc, setDoc, addDoc, Timestamp  } from 'firebase/firestore';
 
 export default async function handlerData(req, res) {
+  const unfilteredSubjectsCombined = req.body.unfilteredCombinedSubjects
   const combinedSubjects = req.body.combinedSubjects
     const tuitionList = req.body.tuitionSubjects
     const artList = req.body.artsSubjects
@@ -20,7 +21,6 @@ const grade = req.body.userGrade
     const db = getFirestore(app);
 
 
-console.log('combined',combinedSubjects);
     // console.log('userJson',userJson);
 
 if(req.method === 'POST'){
@@ -37,6 +37,7 @@ if(req.method === 'POST'){
       tuitionSubjects : tuitionList,
       artsSubjects : artList,
       subjects : combinedSubjects,
+      subjectsName : unfilteredSubjectsCombined,
       createdAt : Date.now(),
       studentGrade : grade,
 
