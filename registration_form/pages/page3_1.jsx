@@ -25,12 +25,12 @@ function Page3_1({}) {
     },
     {
        id : 2,
-      subj : "Mathematic (Tamil)",
+      subj : "Mathematic ( Tamil )",
       price : 60,
     },
     {
        id : 3,
-      subj : "Science (Tamil)",
+      subj : "Science ( Tamil )",
       price : 60,
     },
     {
@@ -40,7 +40,7 @@ function Page3_1({}) {
     },
     {
        id : 5,
-      subj : "Sejarah (Tamil)",
+      subj : "Sejarah ( Tamil )",
       price : 60,
     },
 
