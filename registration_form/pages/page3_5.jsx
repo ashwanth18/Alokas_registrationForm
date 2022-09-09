@@ -91,7 +91,7 @@ function Page3_5 ({}) {
      },
      {
         id : 15,
-       subj : "Language Arts (  French)",
+       subj : "Language Arts ( French )",
        price : 150,
      },
 
