@@ -71,27 +71,27 @@ function Page3_5 ({}) {
      },
      {
         id : 11,
-       subj : "Language Arts (English)",
+       subj : "Language Arts ( English )",
        price : 100,
      },
      {
         id : 12,
-       subj : "Language Arts (Tamil)",
+       subj : "Language Arts ( Tamil )",
        price : 80,
      },
      {
         id : 13,
-       subj : "Language Arts (Bahasa Melaysia)",
+       subj : "Language Arts ( Bahasa Malaysia )",
        price : 100,
      },
      {
         id : 14,
-       subj : "Language Arts (Mandarin)",
+       subj : "Language Arts ( Mandarin )",
        price : 100,
      },
      {
         id : 15,
-       subj : "Language Arts (French)",
+       subj : "Language Arts (  French)",
        price : 150,
      },
 

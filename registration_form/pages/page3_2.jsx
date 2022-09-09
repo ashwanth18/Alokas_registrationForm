@@ -32,6 +32,11 @@ function Page3_2({}) {
       subj : "Science",
       price : 60,
     },
+    {
+      id : 3,
+     subj : "Sejarah",
+     price : 60,
+   },
   
 
   ];

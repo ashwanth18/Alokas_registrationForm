@@ -25,12 +25,12 @@ function Page3({}) {
     },
     {
        id : 2,
-      subj : "Mathematics (Tamil)",
+      subj : "Mathematics ( Tamil )",
       price : 60,
     },
     {
        id : 3,
-      subj : "Science (Tamil)",
+      subj : "Science ( Tamil )",
       price : 60,
     },
     {
