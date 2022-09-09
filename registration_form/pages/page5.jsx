@@ -136,7 +136,6 @@ else if(filteredArtsSubject.length != 0) {
   // }
 const fullData = {
   combinedSubjects : combinedList,
-  unfilteredCombinedSubjects : combinedUnfilteredList,
   tuitionSubjects : filteredTuitionSubject,
   artsSubjects : filteredArtsSubject,
   userData : userInfo,
