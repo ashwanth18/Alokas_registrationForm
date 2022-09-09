@@ -25,7 +25,7 @@ function Page3({}) {
     },
     {
        id : 2,
-      subj : "Mathematics ( Tamil )",
+      subj : "Mathematic ( Tamil )",
       price : 60,
     },
     {
