@@ -95,17 +95,18 @@ const unfilteredArtsSubject = [];
 const filteredArtsSubject = [];
 if(artsSubjectList != null) { 
   artsSubjectList.forEach((value,index) => {
-  filteredArtsSubject.push(`art_${value['subj'].toLowerCase().replace(/\s/g, '')}`)
+  filteredArtsSubject.push(`art_${value['subj'].toLowerCase().replace(/\s/g, '_')}`)
   unfilteredArtsSubject.push(value['subj']);
   })}
 const courseYear = userYear.toLowerCase().replace(/\s/g, '');
+
 const unfilteredTuitionSubject = [];
 const filteredTuitionSubject = [];
 
 if(subjectList != null) {
   subjectList.forEach((value,index) => {
-  filteredTuitionSubject.push( `${courseYear}_${value['subj'].toLowerCase().replace(/\s/g, '')}`)
-  unfilteredTuitionSubject.push(value['subj']);
+  filteredTuitionSubject.push( `${courseYear}_${value['subj'].toLowerCase().replace(/\s/g, '_')}`)
+  unfilteredTuitionSubject.push(value ['subj'].replace(/\s/g, '_'));
   })}
   const combinedUnfilteredList = [];
 const combinedList = [];
