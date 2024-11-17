@@ -29,7 +29,9 @@ exit={{y:"-100vh"}}
   <Link href="/page2_3" passHref>
   <a className='m-2'><Button value = {"SMK"} /></a>
   </Link>
-  
+  <Link href="/page2_4" passHref>
+  <a className='m-2'><Button value = {"IGCSE"} /></a>
+  </Link>
   </div>
   <div className=' mt-[10%]'>
 

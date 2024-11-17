@@ -28,7 +28,7 @@ exit={{y:"-100vh"}}
     transition={{ease:"easeInOut"}}
     >
 <Header />
-<BackButton />
+{/* <BackButton /> */}
 
 <h1 className='items-center text-center mt-[35%] lg:mt-[10%] font-extrabold text-base md:text-3xl'> Select your school category</h1>
 
@@ -36,12 +36,12 @@ exit={{y:"-100vh"}}
     <Link href="/page1" passHref>
   <a className='m-2'><Button value = {"Tuition "} handler={handler} /></a>
   </Link>
-  <Link href="/page3_5" passHref>
+  {/* <Link href="/page3_5" passHref>
   <a className='m-2'><Button value = {"Arts "} handler={handler} /></a>
   </Link>
   <Link href="/page1" passHref>
   <a className='m-2'><Button value = {"Both"} handler={handler} /></a>
-  </Link>
+  </Link> */}
  
   </div>
   <div className=' mt-[10%]'>

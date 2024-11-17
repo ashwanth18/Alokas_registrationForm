@@ -7,8 +7,8 @@
 body{
   
   @apply  text-white overflow-x-hidden bg-cover ;
-  background: rgb(34,75,195);
-  background: linear-gradient(45deg, rgba(34,75,195,1) 21%, rgba(45,251,253,1) 100%);
+  background: rgb(12, 43, 136);
+  background: linear-gradient(-601deg, rgb(3, 12, 39) 21%, rgb(137, 244, 246) 100%);
 }
 }
 

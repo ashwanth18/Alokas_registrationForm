@@ -14,7 +14,7 @@ function Page3_4({}) {
   const subjects = [
     {
       id : 0,
-      subj : "Bahasa Malaysia",
+      subj : "Bahasa Melayu",
       price : 60,
     },
     {
@@ -24,7 +24,7 @@ function Page3_4({}) {
     },
     {
        id : 2,
-      subj : "Mathematic",
+      subj : "Mathematics",
       price : 60,
     },
     {

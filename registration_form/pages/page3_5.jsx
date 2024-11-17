@@ -16,84 +16,26 @@ function Page3_5 ({}) {
   const subjects = [
     {
       id : 0,
-      subj : "Bharathanatiam",
+      subj : "English",
       price : 100,
     },
     {
-       id : 1,
-      subj : "Sangeetham",
+      id : 1,
+     subj : "Bahasa Melayu",
+     price : 100,
+   },
+    {
+       id : 2,
+      subj : "Mathematics",
       price : 125,
     },
     {
-       id : 2,
-      subj : "Veenai",
+       id : 3,
+      subj : "Science",
       price : 100,
     },
-    {
-        id : 3,
-       subj : "Violin",
-       price : 100,
-     },
-    {
-       id : 4,
-      subj : "Keyboard",
-      price : 100,
-    },
-    {
-        id : 5,
-       subj : "Mirithangam",
-       price : 100,
-     },  
-       {
-        id : 6,
-       subj : "Tabla",
-       price : 100,
-     },  
-     {
-      id : 7,
-     subj : "Devaram & Thirukkural",
-     price : 100,
-   },   
-       {
-        id : 8,
-       subj : "Yoga",
-       price : 75,
-     },
-     {
-        id : 9,
-       subj : "Chess",
-       price : 75,
-     },
-     {
-        id : 10,
-       subj : "Speech & Drama",
-       price : 125,
-     },
-     {
-        id : 11,
-       subj : "Language Arts ( English )",
-       price : 100,
-     },
-     {
-        id : 12,
-       subj : "Language Arts ( Tamil )",
-       price : 80,
-     },
-     {
-        id : 13,
-       subj : "Language Arts ( Bahasa Malaysia )",
-       price : 100,
-     },
-     {
-        id : 14,
-       subj : "Language Arts ( Mandarin )",
-       price : 100,
-     },
-     {
-        id : 15,
-       subj : "Language Arts ( French )",
-       price : 150,
-     },
+
+    
 
   ];
   const [selectedGrade, setSelectedGrade] = useState([]);
@@ -116,7 +58,7 @@ if(item){
 <BackButton />
 
 <h1 className='flex items-center justify-center mt-[5%] mb-[10%] font-extrabold text-sm  md:text-3xl'>
-   {` Arts subjects: Select 1 or more subjects`}
+   {` ${selectedGrade} subjects: Select 1 or more subjects`}
 </h1>
 
 <ArtsSubjectList subjects = {subjects} />

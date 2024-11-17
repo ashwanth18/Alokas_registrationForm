@@ -15,7 +15,7 @@ function Page3({}) {
   const subjects = [
     {
       id : 0,
-      subj : "Bahasa Malaysia",
+      subj : "Bahasa Melayu",
       price : 60,
     },
     {

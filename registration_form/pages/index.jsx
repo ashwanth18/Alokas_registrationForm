@@ -30,7 +30,7 @@ function Home(){
       <div
       className='flex justify-center text-center items-center mt-[25%] md:mt-[15%] lg:mt-[5%] '>
         
-        <Link href="/page0_5" passHref>
+        <Link href="/page1" passHref>
       <a><Button value = {"Start"} /></a>
       </Link>
       </div>

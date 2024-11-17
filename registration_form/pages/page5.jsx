@@ -321,7 +321,7 @@ className="md:flex md:items-center mb-6">
     }}
     >
   <FormControlLabel
-    label="Click to confirm if information is correct and get 10% discount on registration fee"
+    label="Click to confirm if information is correct"
     control={
       <Checkbox
         onChange={inputHandler}
@@ -333,7 +333,7 @@ className="md:flex md:items-center mb-6">
 </div>
 
 <p></p>
-<Link href={"/page0_5"} passHref>
+<Link href={"/index.jsx"} passHref>
 <a >
 <motion.button
 initial={{
@@ -349,7 +349,7 @@ whileHover={{
   textShadow: "0px 0px 8px rgb(255,255,255)",
   boxShadow: "0px 0px 8px rgb(255,255,255)"
 }}
-className=' md:ml-6 rounded-full p-2 border' >EDIT</motion.button>
+className=' md:ml-6 rounded-full p-2 border' >Restart</motion.button>
 </a>
 </Link>
 </div>
